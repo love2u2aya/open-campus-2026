@@ -258,6 +258,11 @@
   .ticket .tdate::before { content: "🎫"; font-size: 11px; }
   .ticket .tuni { font-size: 12px; color: var(--ink-soft); font-weight: 700; line-height: 1.4; }
   .ticket .tuni b { color: var(--ink); }
+  a.ticket { text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: box-shadow .12s, transform .08s; }
+  a.ticket:hover { box-shadow: 0 3px 12px rgba(27,29,42,.14); }
+  a.ticket:active { transform: scale(.99); }
+  a.ticket:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+  a.ticket .tuni::after { content: " ↗"; font-size: 9px; opacity: .55; }
 
   /* 予約開始 行（大学別カード内・当日行とは別デザイン） */
   .rsv-row {
@@ -442,27 +447,29 @@
   <!-- ===== 予約開始タイムライン ===== -->
   <section>
     <div class="eyebrow"><h2>予約はいつ取る？</h2><span class="tag">Reservation</span></div>
-    <p class="lead"><b>🎫「予約開始日」は開催日とは別物。</b>先着・満員になる校もあるので、志望校が固まったら開始日にすぐ動くのが安全です（今日=7/11時点）。</p>
+    <p class="lead"><b>🎫「予約開始日」は開催日とは別物。</b>先着・満員になる校もあるので、志望校が固まったら開始日にすぐ動くのが安全です（今日=7/11時点）。<b>各行をタップ↗すると予約/受付ページ（未開設なら最寄りの公式ページ）が開きます。</b></p>
     <div class="rsv">
       <div class="rsv-col now">
         <h3>▶ もう予約できる（受付中）</h3>
         <div class="rsv-list">
-          <div class="ticket go"><span class="tdate">7/3〜</span><span class="tuni"><b>早稲田</b>（一部プログラム）</span></div>
-          <div class="ticket go"><span class="tdate">7/6〜</span><span class="tuni"><b>明治</b>（先着）／<b>法政</b>・多摩</span></div>
-          <div class="ticket go"><span class="tdate">7/8〜</span><span class="tuni"><b>法政</b>・市ケ谷</span></div>
-          <div class="ticket go"><span class="tdate">7/10〜</span><span class="tuni"><b>中央</b>（後楽園・茗荷谷）</span></div>
-          <div class="ticket go"><span class="tdate">受付中</span><span class="tuni"><b>ICU</b>夏OC／<b>青山</b>・相模原＝満員でキャンセル待ち</span></div>
+          <a class="ticket go" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener"><span class="tdate">7/3〜</span><span class="tuni"><b>早稲田</b>（一部プログラム）</span></a>
+          <a class="ticket go" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener"><span class="tdate">7/6〜</span><span class="tuni"><b>明治</b>（先着）</span></a>
+          <a class="ticket go" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/6〜</span><span class="tuni"><b>法政</b>・多摩</span></a>
+          <a class="ticket go" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/8〜</span><span class="tuni"><b>法政</b>・市ケ谷</span></a>
+          <a class="ticket go" href="https://chuooc2026.jp/" target="_blank" rel="noopener"><span class="tdate">7/10〜</span><span class="tuni"><b>中央</b>（後楽園・茗荷谷）</span></a>
+          <a class="ticket go" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener"><span class="tdate">受付中</span><span class="tuni"><b>ICU</b>・夏OC</span></a>
+          <a class="ticket go" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener"><span class="tdate">受付中</span><span class="tuni"><b>青山</b>・相模原＝満員でキャンセル待ち</span></a>
         </div>
       </div>
       <div class="rsv-col soon">
         <h3>⏳ まもなく開始（要チェック）</h3>
         <div class="rsv-list">
-          <div class="ticket wait"><span class="tdate">7/13 17:00</span><span class="tuni"><b>上智</b></span></div>
-          <div class="ticket wait"><span class="tdate">7/14 19:00</span><span class="tuni"><b>立教</b>（池袋）</span></div>
-          <div class="ticket wait"><span class="tdate">7/15 12:30</span><span class="tuni"><b>法政</b>・小金井</span></div>
-          <div class="ticket wait"><span class="tdate">7/17 18:00</span><span class="tuni"><b>青山</b>（青山8/2–4・追加募集）</span></div>
-          <div class="ticket wait"><span class="tdate">7/18 10:00</span><span class="tuni"><b>学習院</b>（夏）※秋は10/5〜</span></div>
-          <div class="ticket wait"><span class="tdate">未定</span><span class="tuni"><b>慶應</b>（事前申込制・開始日は公式未掲載）</span></div>
+          <a class="ticket wait" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener"><span class="tdate">7/13 17:00</span><span class="tuni"><b>上智</b></span></a>
+          <a class="ticket wait" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener"><span class="tdate">7/14 19:00</span><span class="tuni"><b>立教</b>（池袋）</span></a>
+          <a class="ticket wait" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/15 12:30</span><span class="tuni"><b>法政</b>・小金井</span></a>
+          <a class="ticket wait" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener"><span class="tdate">7/17 18:00</span><span class="tuni"><b>青山</b>（青山8/2–4・追加募集）</span></a>
+          <a class="ticket wait" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener"><span class="tdate">7/18 10:00</span><span class="tuni"><b>学習院</b>（夏）※秋は10/5〜</span></a>
+          <a class="ticket wait" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener"><span class="tdate">未定</span><span class="tuni"><b>慶應</b>（開始日は公式未掲載→公式OCへ）</span></a>
         </div>
       </div>
     </div>
