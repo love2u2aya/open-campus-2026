@@ -169,6 +169,17 @@
   .chip.keio   { background: var(--keio-bg);   color: var(--keio);   border-color: var(--keio); }
   .chip.gmarch { background: var(--gmarch-bg); color: var(--gmarch); border-color: var(--gmarch); }
   .chip.icu    { background: var(--icu-bg);    color: var(--icu);    border-color: var(--icu); }
+  /* タップで公式ページへ（チップ/カードのリンク化） */
+  a.chip { text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: box-shadow .12s, filter .12s, transform .08s; }
+  a.chip::after { content: " ↗"; font-size: 9px; opacity: .6; }
+  a.chip .cp { text-decoration: none; }
+  a.chip:hover { filter: brightness(.98); box-shadow: 0 2px 9px rgba(27,29,42,.14); }
+  a.chip:active { transform: scale(.98); }
+  a.chip:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+  a.mini { text-decoration: none; color: inherit; cursor: pointer; display: block; -webkit-tap-highlight-color: transparent; transition: box-shadow .12s, transform .08s; }
+  a.mini:hover { box-shadow: 0 5px 18px rgba(27,29,42,.15); }
+  a.mini:active { transform: scale(.99); }
+  a.mini:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
 
   /* ===== 単発・終了ストリップ ===== */
   .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
@@ -275,10 +286,34 @@
   .ftag.fix { background: var(--gmarch); color: #fff; }
   .ftag.est { background: transparent; color: var(--ink-faint); border: 1px solid var(--line); }
 
-  @media (max-width: 560px) {
-    section { margin-top: 40px; }
-    .hero { padding: 44px 16px 32px; }
+  /* ===== スマホ最適化 ===== */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 14px 56px; }
+    section, .fes-sec { margin-top: 38px; }
+    .hero { padding: 40px 16px 30px; }
+    .hero .meta span { font-size: 12px; padding: 5px 11px; }
     .rsv { grid-template-columns: 1fr; }
+    /* カレンダーは横スクロールをやめ、日付ごとの縦リスト（アジェンダ）に */
+    .cal-scroll { overflow: visible; }
+    .cal { grid-template-columns: 1fr; min-width: 0; gap: 7px; }
+    .cal .head { display: none; }
+    .cell.empty, .cell.pad { display: none; }
+    .cell { min-height: 0; padding: 10px 12px; }
+    .cell .d { font-size: 16px; }
+    .cell .d .wd { font-size: 12px; }
+    /* タップ領域を広げる */
+    .chip { font-size: 13px; padding: 8px 11px; line-height: 1.35; }
+    .chip .cp { font-size: 11px; }
+    .cards, .strip, .fes { grid-template-columns: 1fr; }
+    .ticket { grid-template-columns: 84px 1fr; }
+    .group-label { margin: 24px 0 12px; }
+  }
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 27px; }
+    .chip { font-size: 12.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a.chip, a.mini { transition: none; }
   }
 </style>
 
@@ -298,7 +333,7 @@
   <!-- ===== メインカレンダー ===== -->
   <section>
     <div class="eyebrow"><h2>ピークカレンダー</h2><span class="tag">Jul 26 – Aug 15</span></div>
-    <p class="lead">夏OCは <b>8/2（日）に8校が集中</b>。この1週間で首都圏の主要キャンパスがほぼ出そろいます。</p>
+    <p class="lead">夏OCは <b>8/2（日）に8校が集中</b>。この1週間で首都圏の主要キャンパスがほぼ出そろいます。<b>各大学をタップ↗すると公式OC/予約ページ（上智・中央は特設サイト）が開きます。</b></p>
     <div class="legend">
       <span class="item"><span class="dot keio"></span>早慶上智</span>
       <span class="item"><span class="dot gmarch"></span>GMARCH</span>
@@ -314,7 +349,7 @@
         <!-- 週1: 7/26–8/1 -->
         <div class="cell sun">
           <div class="d"><span class="num">7/26</span><span class="wd">日</span></div>
-          <span class="chip keio">早稲田<span class="cp">地方：大阪・広島・福岡</span></span>
+          <a class="chip keio" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">早稲田<span class="cp">地方：大阪・広島・福岡</span></a>
         </div>
         <div class="cell empty"><div class="d"><span class="num">27</span></div></div>
         <div class="cell empty"><div class="d"><span class="num">28</span></div></div>
@@ -322,62 +357,62 @@
         <div class="cell empty"><div class="d"><span class="num">30</span></div></div>
         <div class="cell">
           <div class="d"><span class="num">7/31</span><span class="wd">金</span></div>
-          <span class="chip gmarch">学習院<span class="cp">目白・夏①</span></span>
+          <a class="chip gmarch" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener">学習院<span class="cp">目白・夏①</span></a>
         </div>
         <div class="cell sat hot">
           <div class="d"><span class="num">8/1</span><span class="wd">土</span></div>
-          <span class="chip keio">早稲田<span class="cp">早稲田/戸山/西早稲田</span></span>
-          <span class="chip keio">慶應<span class="cp">SFC・看護医療</span></span>
-          <span class="chip gmarch">学習院<span class="cp">目白・夏②</span></span>
-          <span class="chip gmarch">中央<span class="cp">後楽園・理工</span></span>
+          <a class="chip keio" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">早稲田<span class="cp">早稲田/戸山/西早稲田</span></a>
+          <a class="chip keio" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">慶應<span class="cp">SFC・看護医療</span></a>
+          <a class="chip gmarch" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener">学習院<span class="cp">目白・夏②</span></a>
+          <a class="chip gmarch" href="https://chuooc2026.jp/" target="_blank" rel="noopener">中央<span class="cp">後楽園・理工</span></a>
         </div>
 
         <!-- 週2: 8/2–8/8 -->
         <div class="cell sun hot">
           <div class="d"><span class="num">8/2</span><span class="wd">日</span></div>
           <span class="flag">最集中日</span>
-          <span class="chip keio">早稲田<span class="cp">早稲田/戸山/西早稲田</span></span>
-          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
-          <span class="chip gmarch">明治<span class="cp">生田</span></span>
-          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
-          <span class="chip gmarch">中央<span class="cp">後楽園</span></span>
-          <span class="chip gmarch">中央<span class="cp">茗荷谷・法</span></span>
-          <span class="chip gmarch">法政<span class="cp">多摩</span></span>
-          <span class="chip gmarch">法政<span class="cp">小金井</span></span>
+          <a class="chip keio" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">早稲田<span class="cp">早稲田/戸山/西早稲田</span></a>
+          <a class="chip gmarch" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">青山学院<span class="cp">青山</span></a>
+          <a class="chip gmarch" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener">明治<span class="cp">生田</span></a>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">池袋</span></a>
+          <a class="chip gmarch" href="https://chuooc2026.jp/" target="_blank" rel="noopener">中央<span class="cp">後楽園</span></a>
+          <a class="chip gmarch" href="https://chuooc2026.jp/" target="_blank" rel="noopener">中央<span class="cp">茗荷谷・法</span></a>
+          <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">多摩</span></a>
+          <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">小金井</span></a>
         </div>
         <div class="cell hot">
           <div class="d"><span class="num">8/3</span><span class="wd">月</span></div>
-          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
-          <span class="chip gmarch">明治<span class="cp">生田</span></span>
-          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
-          <span class="chip gmarch">中央<span class="cp">茗荷谷・法</span></span>
+          <a class="chip gmarch" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">青山学院<span class="cp">青山</span></a>
+          <a class="chip gmarch" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener">明治<span class="cp">生田</span></a>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">池袋</span></a>
+          <a class="chip gmarch" href="https://chuooc2026.jp/" target="_blank" rel="noopener">中央<span class="cp">茗荷谷・法</span></a>
         </div>
         <div class="cell hot">
           <div class="d"><span class="num">8/4</span><span class="wd">火</span></div>
-          <span class="chip keio">慶應<span class="cp">三田・全学部</span></span>
-          <span class="chip keio">上智<span class="cp">四谷①</span></span>
-          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
-          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+          <a class="chip keio" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">慶應<span class="cp">三田・全学部</span></a>
+          <a class="chip keio" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener">上智<span class="cp">四谷①</span></a>
+          <a class="chip gmarch" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">青山学院<span class="cp">青山</span></a>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">池袋</span></a>
         </div>
         <div class="cell hot">
           <div class="d"><span class="num">8/5</span><span class="wd">水</span></div>
-          <span class="chip keio">慶應<span class="cp">三田・全学部</span></span>
-          <span class="chip keio">上智<span class="cp">四谷②</span></span>
-          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+          <a class="chip keio" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">慶應<span class="cp">三田・全学部</span></a>
+          <a class="chip keio" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener">上智<span class="cp">四谷②</span></a>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">池袋</span></a>
         </div>
         <div class="cell">
           <div class="d"><span class="num">8/6</span><span class="wd">木</span></div>
-          <span class="chip gmarch">明治<span class="cp">駿河台・中野</span></span>
+          <a class="chip gmarch" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener">明治<span class="cp">駿河台・中野</span></a>
         </div>
         <div class="cell">
           <div class="d"><span class="num">8/7</span><span class="wd">金</span></div>
-          <span class="chip gmarch">明治<span class="cp">駿河台・中野</span></span>
-          <span class="chip gmarch">立教<span class="cp">新座</span></span>
+          <a class="chip gmarch" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener">明治<span class="cp">駿河台・中野</span></a>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">新座</span></a>
         </div>
         <div class="cell sat">
           <div class="d"><span class="num">8/8</span><span class="wd">土</span></div>
-          <span class="chip gmarch">立教<span class="cp">新座</span></span>
-          <span class="chip gmarch">法政<span class="cp">多摩</span></span>
+          <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">新座</span></a>
+          <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">多摩</span></a>
         </div>
 
         <!-- 週3: 8/9–8/15 -->
@@ -385,20 +420,20 @@
         <div class="cell empty"><div class="d"><span class="num">10</span></div></div>
         <div class="cell">
           <div class="d"><span class="num">8/11</span><span class="wd">火祝</span></div>
-          <span class="chip gmarch">法政<span class="cp">市ケ谷</span></span>
+          <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">市ケ谷</span></a>
         </div>
         <div class="cell">
           <div class="d"><span class="num">8/12</span><span class="wd">水</span></div>
-          <span class="chip gmarch">法政<span class="cp">市ケ谷</span></span>
+          <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">市ケ谷</span></a>
         </div>
         <div class="cell empty"><div class="d"><span class="num">13</span></div></div>
         <div class="cell">
           <div class="d"><span class="num">8/14</span><span class="wd">金</span></div>
-          <span class="chip icu">ICU<span class="cp">三鷹・夏①</span></span>
+          <a class="chip icu" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">ICU<span class="cp">三鷹・夏①</span></a>
         </div>
         <div class="cell sat">
           <div class="d"><span class="num">8/15</span><span class="wd">土</span></div>
-          <span class="chip icu">ICU<span class="cp">三鷹・夏②</span></span>
+          <a class="chip icu" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">ICU<span class="cp">三鷹・夏②</span></a>
         </div>
       </div>
     </div>
@@ -438,31 +473,31 @@
     <div class="eyebrow"><h2>早めの単発 ＆ 開催済み</h2><span class="tag">6–7月</span></div>
     <p class="lead">カレンダーより前に動くもの。青山・相模原は<b>7/12</b>と早いので取りこぼし注意。</p>
     <div class="strip">
-      <div class="mini">
+      <a class="mini" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">7/12</span><span class="wd">日</span></div>
         <div class="uni">青山学院 <span class="badge sun">近日</span></div>
         <div class="cp">相模原（理工・社会情報・地球社会共生・コミュニティ人間科学）</div>
-      </div>
-      <div class="mini">
+      </a>
+      <a class="mini" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">7/20</span><span class="wd">月祝</span></div>
         <div class="uni">早稲田 <span class="badge sun">地方</span></div>
         <div class="cp">仙台会場（全体・予約不要）</div>
-      </div>
-      <div class="mini done">
+      </a>
+      <a class="mini done" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">6/7</span><span class="wd">日</span></div>
         <div class="uni">慶應 <span class="badge">終了</span></div>
         <div class="cp">日吉・講義編（学部説明・模擬講義）</div>
-      </div>
-      <div class="mini done">
+      </a>
+      <a class="mini done" href="https://chuooc2026.jp/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">6/20</span><span class="wd">土日</span></div>
         <div class="uni">中央 <span class="badge">終了</span></div>
         <div class="cp">多摩（今年から6月前倒し・6/20–21）</div>
-      </div>
-      <div class="mini done">
+      </a>
+      <a class="mini done" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">7/4</span><span class="wd">土</span></div>
         <div class="uni">ICU <span class="badge">終了</span></div>
         <div class="cp">三鷹・Open Campus in English</div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -471,26 +506,26 @@
     <div class="eyebrow"><h2>秋・冬・翌春の予定</h2><span class="tag">Oct →</span></div>
     <p class="lead">夏を逃しても第2チャンスあり。詳細は開催<b>約1か月前</b>に各校が発表します。</p>
     <div class="strip">
-      <div class="mini">
+      <a class="mini" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">10/24</span><span class="wd">土日</span></div>
         <div class="uni">学習院 <span class="badge autumn">秋</span></div>
         <div class="cp">目白（10/24午後・10/25）／オンライン配信あり</div>
-      </div>
-      <div class="mini">
+      </a>
+      <a class="mini" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">11/22</span><span class="wd">日祝</span></div>
         <div class="uni">慶應 SFC <span class="badge autumn">秋</span></div>
         <div class="cp">万学博覧会（総合政策・環境情報・看護医療／11/22–23・詳細決定待ち）</div>
-      </div>
-      <div class="mini">
+      </a>
+      <a class="mini" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">11/28</span><span class="wd">土</span></div>
         <div class="uni">ICU <span class="badge autumn">秋</span></div>
         <div class="cp">Science Day（三鷹・予約制見込み）</div>
-      </div>
-      <div class="mini">
+      </a>
+      <a class="mini" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">3/20</span><span class="wd">'27土</span></div>
         <div class="uni">ICU <span class="badge autumn">春</span></div>
         <div class="cp">春のオープンキャンパス（三鷹・2027年）</div>
-      </div>
+      </a>
     </div>
   </section>
 
