@@ -1,0 +1,641 @@
+<title>2026夏 オープンキャンパス｜早慶・GMARCH・ICU</title>
+<style>
+  /* ===== トークン設計 ===== */
+  :root {
+    --paper:      #f4f3ef;   /* インディゴ寄りの温かい白 */
+    --paper-2:    #eceae3;
+    --card:       #ffffff;
+    --ink:        #1b1d2a;   /* 深いインディゴ墨 */
+    --ink-soft:   #4a4d63;
+    --ink-faint:  #868799;
+    --line:       #d9d6cc;
+    --line-soft:  #e6e3da;
+
+    /* グループ色（早慶／GMARCH／ICU） */
+    --keio:       #a8324a;   /* 早慶＝深紅 */
+    --keio-bg:    #f7e6ea;
+    --gmarch:     #1f7a68;   /* GMARCH＝松葉 */
+    --gmarch-bg:  #e0f0eb;
+    --icu:        #b5811b;   /* ICU＝琥珀 */
+    --icu-bg:     #f6ecd6;
+
+    --sun:        #e0592b;   /* 夏のアクセント */
+    --shadow:     0 1px 2px rgba(27,29,42,.06), 0 8px 24px rgba(27,29,42,.06);
+    --radius:     14px;
+  }
+  :root { --ink-faint: #868799; }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:     #14151c;
+      --paper-2:   #1b1c26;
+      --card:      #20222e;
+      --ink:       #edecf4;
+      --ink-soft:  #b6b7c6;
+      --ink-faint: #7f8194;
+      --line:      #33354552;
+      --line:      #363849;
+      --line-soft: #2a2c39;
+      --keio:      #f08aa0;  --keio-bg:   #3a2028;
+      --gmarch:    #63c9b3;  --gmarch-bg: #163029;
+      --icu:       #e3ba62;  --icu-bg:    #362a12;
+      --sun:       #ff7a4d;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper:#f4f3ef; --paper-2:#eceae3; --card:#fff; --ink:#1b1d2a; --ink-soft:#4a4d63;
+    --ink-faint:#868799; --line:#d9d6cc; --line-soft:#e6e3da;
+    --keio:#a8324a; --keio-bg:#f7e6ea; --gmarch:#1f7a68; --gmarch-bg:#e0f0eb;
+    --icu:#b5811b; --icu-bg:#f6ecd6; --sun:#e0592b;
+    --shadow:0 1px 2px rgba(27,29,42,.06),0 8px 24px rgba(27,29,42,.06);
+  }
+  :root[data-theme="dark"] {
+    --paper:#14151c; --paper-2:#1b1c26; --card:#20222e; --ink:#edecf4; --ink-soft:#b6b7c6;
+    --ink-faint:#7f8194; --line:#363849; --line-soft:#2a2c39;
+    --keio:#f08aa0; --keio-bg:#3a2028; --gmarch:#63c9b3; --gmarch-bg:#163029;
+    --icu:#e3ba62; --icu-bg:#362a12; --sun:#ff7a4d;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "palt" 1;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 72px; }
+  .num { font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+
+  /* ===== ヒーロー ===== */
+  header.hero {
+    position: relative;
+    padding: 56px 20px 40px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(120% 90% at 82% -10%, color-mix(in srgb, var(--sun) 20%, transparent), transparent 60%),
+      radial-gradient(90% 80% at 12% 0%, color-mix(in srgb, var(--gmarch) 14%, transparent), transparent 55%);
+  }
+  .hero .kicker {
+    font-size: 13px; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--sun); font-weight: 800; margin: 0 0 14px;
+  }
+  .hero h1 {
+    margin: 0 auto; max-width: 15ch; text-wrap: balance;
+    font-weight: 900; line-height: 1.12; letter-spacing: .01em;
+    font-size: clamp(30px, 6.4vw, 58px);
+  }
+  .hero h1 .yr { color: var(--sun); }
+  .hero .sub {
+    margin: 18px auto 0; max-width: 40ch; color: var(--ink-soft);
+    font-size: clamp(14px, 2.4vw, 17px); text-wrap: balance;
+  }
+  .hero .meta {
+    margin-top: 22px; display: inline-flex; flex-wrap: wrap; gap: 8px 10px; justify-content: center;
+  }
+  .hero .meta span {
+    font-size: 12.5px; color: var(--ink-soft); background: var(--card);
+    border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px;
+  }
+
+  /* ===== 汎用セクション ===== */
+  section { margin-top: 52px; }
+  .eyebrow {
+    display: flex; align-items: baseline; gap: 12px; margin: 0 0 4px;
+  }
+  .eyebrow h2 { margin: 0; font-size: clamp(20px, 3.4vw, 26px); font-weight: 900; letter-spacing: .01em; }
+  .eyebrow .tag {
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 700;
+  }
+  .lead { margin: 0 0 22px; color: var(--ink-soft); font-size: 14.5px; }
+
+  /* 凡例 */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 26px; }
+  .legend .item { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+  .dot { width: 12px; height: 12px; border-radius: 4px; flex: none; }
+  .dot.keio { background: var(--keio); }
+  .dot.gmarch { background: var(--gmarch); }
+  .dot.icu { background: var(--icu); }
+
+  /* ===== カレンダー ===== */
+  .cal-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .cal {
+    display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr));
+    gap: 8px; min-width: 840px;
+  }
+  .cal .head {
+    text-align: center; font-size: 12px; font-weight: 800; letter-spacing: .1em;
+    color: var(--ink-faint); padding: 2px 0 4px;
+  }
+  .cal .head.sun { color: var(--keio); }
+  .cal .head.sat { color: var(--gmarch); }
+  .cell {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 10px;
+    min-height: 92px; padding: 8px 8px 10px; display: flex; flex-direction: column; gap: 5px;
+  }
+  .cell.empty { background: transparent; border: 1px dashed var(--line-soft); opacity: .5; }
+  .cell.pad { background: transparent; border: none; }
+  .cell .d {
+    display: flex; align-items: center; justify-content: space-between;
+    font-weight: 800; font-size: 15px; color: var(--ink); line-height: 1;
+  }
+  .cell .d .wd { font-size: 10.5px; font-weight: 700; color: var(--ink-faint); }
+  .cell.sun .d { color: var(--keio); }
+  .cell.sat .d { color: var(--gmarch); }
+  .cell.hot { box-shadow: 0 0 0 2px var(--sun) inset; }
+  .cell .flag {
+    align-self: flex-start; font-size: 9.5px; font-weight: 800; letter-spacing: .08em;
+    color: #fff; background: var(--sun); padding: 1px 6px; border-radius: 999px; margin-top: -2px;
+  }
+  .chip {
+    display: block; font-size: 11.5px; line-height: 1.3; font-weight: 700;
+    border-radius: 6px; padding: 4px 7px; border-left: 3px solid;
+  }
+  .chip .cp { display: block; font-size: 10px; font-weight: 600; opacity: .82; }
+  .chip.keio   { background: var(--keio-bg);   color: var(--keio);   border-color: var(--keio); }
+  .chip.gmarch { background: var(--gmarch-bg); color: var(--gmarch); border-color: var(--gmarch); }
+  .chip.icu    { background: var(--icu-bg);    color: var(--icu);    border-color: var(--icu); }
+
+  /* ===== 単発・終了ストリップ ===== */
+  .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .mini {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
+    padding: 14px 16px; box-shadow: var(--shadow);
+  }
+  .mini .dl { display: flex; align-items: baseline; gap: 10px; margin-bottom: 3px; }
+  .mini .dl .date { font-size: 18px; font-weight: 900; }
+  .mini .dl .wd { font-size: 11px; color: var(--ink-faint); font-weight: 700; }
+  .mini .uni { font-weight: 800; font-size: 14.5px; }
+  .mini .cp { font-size: 12.5px; color: var(--ink-soft); }
+  .mini.done { opacity: .62; }
+  .mini.done .badge { background: var(--ink-faint); }
+  .badge { display:inline-block; font-size:10px; font-weight:800; letter-spacing:.06em; color:#fff; padding:1px 7px; border-radius:999px; margin-left:2px; vertical-align:1px; }
+  .badge.sun { background: var(--sun); }
+  .badge.autumn { background: var(--icu); }
+
+  /* ===== 大学別カード ===== */
+  .group-label {
+    display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 900;
+    letter-spacing: .04em; margin: 30px 0 14px;
+  }
+  .group-label .bar { width: 26px; height: 4px; border-radius: 2px; }
+  .group-label.keio .bar { background: var(--keio); }
+  .group-label.gmarch .bar { background: var(--gmarch); }
+  .group-label.icu .bar { background: var(--icu); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; }
+  .uni-card {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
+    padding: 16px 17px; box-shadow: var(--shadow); border-top: 4px solid var(--line);
+  }
+  .uni-card.keio { border-top-color: var(--keio); }
+  .uni-card.gmarch { border-top-color: var(--gmarch); }
+  .uni-card.icu { border-top-color: var(--icu); }
+  .uni-card h3 { margin: 0 0 2px; font-size: 17px; font-weight: 900; }
+  .uni-card .place { font-size: 12px; color: var(--ink-faint); font-weight: 700; margin-bottom: 11px; }
+  .rows { display: flex; flex-direction: column; gap: 9px; }
+  .row { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; }
+  .row .when { font-weight: 800; font-size: 13px; white-space: nowrap; }
+  .row .what { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+  .uni-card .foot {
+    margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line-soft);
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .pill { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-soft); }
+  .pill.res { background: color-mix(in srgb, var(--sun) 14%, transparent); border-color: transparent; color: var(--sun); }
+  .pill.on  { background: color-mix(in srgb, var(--gmarch) 14%, transparent); border-color: transparent; color: var(--gmarch); }
+
+  a.src { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+  a.src:focus-visible, .cell:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+
+  /* ===== 注意メモ ===== */
+  .notes { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+  .notes h2 { margin: 0 0 12px; font-size: 17px; font-weight: 900; }
+  .notes ul { margin: 0; padding-left: 20px; }
+  .notes li { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 8px; }
+  .notes li b { color: var(--ink); }
+  .foot-note { margin-top: 26px; text-align: center; font-size: 12px; color: var(--ink-faint); }
+
+  /* ===== 予約開始タイムライン（当日とは別デザイン） ===== */
+  .rsv { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rsv-col { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 18px; }
+  .rsv-col h3 { margin: 0 0 12px; font-size: 14px; font-weight: 900; }
+  .rsv-col.now h3 { color: var(--gmarch); }
+  .rsv-col.soon h3 { color: var(--sun); }
+  .rsv-list { display: flex; flex-direction: column; gap: 8px; }
+  .ticket {
+    display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: center;
+    background: var(--card); border: 1px dashed var(--line); border-left: 3px solid var(--ink-faint);
+    border-radius: 8px; padding: 8px 12px;
+  }
+  .ticket.go { border-left-color: var(--gmarch); }
+  .ticket.wait { border-left-color: var(--sun); }
+  .ticket .tdate { font-weight: 900; font-size: 13px; white-space: nowrap; display: flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums; }
+  .ticket .tdate::before { content: "🎫"; font-size: 11px; }
+  .ticket .tuni { font-size: 12px; color: var(--ink-soft); font-weight: 700; line-height: 1.4; }
+  .ticket .tuni b { color: var(--ink); }
+
+  /* 予約開始 行（大学別カード内・当日行とは別デザイン） */
+  .rsv-row {
+    margin-top: 12px; display: flex; align-items: baseline; gap: 7px;
+    font-size: 11.5px; font-weight: 800; color: var(--sun); line-height: 1.4;
+    background: color-mix(in srgb, var(--sun) 10%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--sun) 55%, transparent);
+    border-radius: 8px; padding: 7px 10px;
+  }
+  .rsv-row::before { content: "🎫"; font-weight: 400; }
+  .rsv-row.done { color: var(--gmarch); background: color-mix(in srgb, var(--gmarch) 10%, transparent); border-color: color-mix(in srgb, var(--gmarch) 45%, transparent); }
+  .rsv-row.tbd { color: var(--ink-faint); background: transparent; border-color: var(--line); }
+
+  /* ===== 文化祭（地味め・秋の参考） ===== */
+  .fes { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 10px; }
+  .fes .f {
+    background: transparent; border: 1px solid var(--line-soft); border-radius: 10px;
+    padding: 11px 13px; color: var(--ink-soft);
+  }
+  .fes .f.tbd { border-style: dashed; opacity: .8; }
+  .fes .f .fd { font-weight: 800; font-size: 13.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .fes .f .fn { font-size: 12px; margin-top: 1px; }
+  .fes .f .fn b { color: var(--ink); font-weight: 800; }
+  .fes .f .fmeta { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
+  .ftag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: .04em; padding: 1px 6px; border-radius: 999px; margin-left: 5px; vertical-align: 1px; }
+  .ftag.fix { background: var(--gmarch); color: #fff; }
+  .ftag.est { background: transparent; color: var(--ink-faint); border: 1px solid var(--line); }
+
+  @media (max-width: 560px) {
+    section { margin-top: 40px; }
+    .hero { padding: 44px 16px 32px; }
+    .rsv { grid-template-columns: 1fr; }
+  }
+</style>
+
+<header class="hero">
+  <p class="kicker">Open Campus Guide</p>
+  <h1><span class="yr num">2026</span> 夏の<br>オープンキャンパス</h1>
+  <p class="sub">早慶上智・GMARCH・ICU ＝ 私大トップ10校の日程を、真夏のピークが一目でわかる1枚に。</p>
+  <div class="meta">
+    <span>🗓 更新：2026年7月11日時点</span>
+    <span>🏛 対象10校</span>
+    <span>🎫 予約開始日つき</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== メインカレンダー ===== -->
+  <section>
+    <div class="eyebrow"><h2>ピークカレンダー</h2><span class="tag">Jul 26 – Aug 15</span></div>
+    <p class="lead">夏OCは <b>8/2（日）に8校が集中</b>。この1週間で首都圏の主要キャンパスがほぼ出そろいます。</p>
+    <div class="legend">
+      <span class="item"><span class="dot keio"></span>早慶上智</span>
+      <span class="item"><span class="dot gmarch"></span>GMARCH</span>
+      <span class="item"><span class="dot icu"></span>ICU</span>
+      <span class="item" style="color:var(--sun)">◻ 枠 = 開催集中日</span>
+    </div>
+
+    <div class="cal-scroll">
+      <div class="cal">
+        <div class="head sun">日</div><div class="head">月</div><div class="head">火</div>
+        <div class="head">水</div><div class="head">木</div><div class="head">金</div><div class="head sat">土</div>
+
+        <!-- 週1: 7/26–8/1 -->
+        <div class="cell sun">
+          <div class="d"><span class="num">7/26</span><span class="wd">日</span></div>
+          <span class="chip keio">早稲田<span class="cp">地方：大阪・広島・福岡</span></span>
+        </div>
+        <div class="cell empty"><div class="d"><span class="num">27</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">28</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">29</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">30</span></div></div>
+        <div class="cell">
+          <div class="d"><span class="num">7/31</span><span class="wd">金</span></div>
+          <span class="chip gmarch">学習院<span class="cp">目白・夏①</span></span>
+        </div>
+        <div class="cell sat hot">
+          <div class="d"><span class="num">8/1</span><span class="wd">土</span></div>
+          <span class="chip keio">早稲田<span class="cp">早稲田/戸山/西早稲田</span></span>
+          <span class="chip keio">慶應<span class="cp">SFC・看護医療</span></span>
+          <span class="chip gmarch">学習院<span class="cp">目白・夏②</span></span>
+          <span class="chip gmarch">中央<span class="cp">後楽園・理工</span></span>
+        </div>
+
+        <!-- 週2: 8/2–8/8 -->
+        <div class="cell sun hot">
+          <div class="d"><span class="num">8/2</span><span class="wd">日</span></div>
+          <span class="flag">最集中日</span>
+          <span class="chip keio">早稲田<span class="cp">早稲田/戸山/西早稲田</span></span>
+          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
+          <span class="chip gmarch">明治<span class="cp">生田</span></span>
+          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+          <span class="chip gmarch">中央<span class="cp">後楽園</span></span>
+          <span class="chip gmarch">中央<span class="cp">茗荷谷・法</span></span>
+          <span class="chip gmarch">法政<span class="cp">多摩</span></span>
+          <span class="chip gmarch">法政<span class="cp">小金井</span></span>
+        </div>
+        <div class="cell hot">
+          <div class="d"><span class="num">8/3</span><span class="wd">月</span></div>
+          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
+          <span class="chip gmarch">明治<span class="cp">生田</span></span>
+          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+          <span class="chip gmarch">中央<span class="cp">茗荷谷・法</span></span>
+        </div>
+        <div class="cell hot">
+          <div class="d"><span class="num">8/4</span><span class="wd">火</span></div>
+          <span class="chip keio">慶應<span class="cp">三田・全学部</span></span>
+          <span class="chip keio">上智<span class="cp">四谷①</span></span>
+          <span class="chip gmarch">青山学院<span class="cp">青山</span></span>
+          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+        </div>
+        <div class="cell hot">
+          <div class="d"><span class="num">8/5</span><span class="wd">水</span></div>
+          <span class="chip keio">慶應<span class="cp">三田・全学部</span></span>
+          <span class="chip keio">上智<span class="cp">四谷②</span></span>
+          <span class="chip gmarch">立教<span class="cp">池袋</span></span>
+        </div>
+        <div class="cell">
+          <div class="d"><span class="num">8/6</span><span class="wd">木</span></div>
+          <span class="chip gmarch">明治<span class="cp">駿河台・中野</span></span>
+        </div>
+        <div class="cell">
+          <div class="d"><span class="num">8/7</span><span class="wd">金</span></div>
+          <span class="chip gmarch">明治<span class="cp">駿河台・中野</span></span>
+          <span class="chip gmarch">立教<span class="cp">新座</span></span>
+        </div>
+        <div class="cell sat">
+          <div class="d"><span class="num">8/8</span><span class="wd">土</span></div>
+          <span class="chip gmarch">立教<span class="cp">新座</span></span>
+          <span class="chip gmarch">法政<span class="cp">多摩</span></span>
+        </div>
+
+        <!-- 週3: 8/9–8/15 -->
+        <div class="cell empty"><div class="d"><span class="num">9</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">10</span></div></div>
+        <div class="cell">
+          <div class="d"><span class="num">8/11</span><span class="wd">火祝</span></div>
+          <span class="chip gmarch">法政<span class="cp">市ケ谷</span></span>
+        </div>
+        <div class="cell">
+          <div class="d"><span class="num">8/12</span><span class="wd">水</span></div>
+          <span class="chip gmarch">法政<span class="cp">市ケ谷</span></span>
+        </div>
+        <div class="cell empty"><div class="d"><span class="num">13</span></div></div>
+        <div class="cell">
+          <div class="d"><span class="num">8/14</span><span class="wd">金</span></div>
+          <span class="chip icu">ICU<span class="cp">三鷹・夏①</span></span>
+        </div>
+        <div class="cell sat">
+          <div class="d"><span class="num">8/15</span><span class="wd">土</span></div>
+          <span class="chip icu">ICU<span class="cp">三鷹・夏②</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 予約開始タイムライン ===== -->
+  <section>
+    <div class="eyebrow"><h2>予約はいつ取る？</h2><span class="tag">Reservation</span></div>
+    <p class="lead"><b>🎫「予約開始日」は開催日とは別物。</b>先着・満員になる校もあるので、志望校が固まったら開始日にすぐ動くのが安全です（今日=7/11時点）。</p>
+    <div class="rsv">
+      <div class="rsv-col now">
+        <h3>▶ もう予約できる（受付中）</h3>
+        <div class="rsv-list">
+          <div class="ticket go"><span class="tdate">7/3〜</span><span class="tuni"><b>早稲田</b>（一部プログラム）</span></div>
+          <div class="ticket go"><span class="tdate">7/6〜</span><span class="tuni"><b>明治</b>（先着）／<b>法政</b>・多摩</span></div>
+          <div class="ticket go"><span class="tdate">7/8〜</span><span class="tuni"><b>法政</b>・市ケ谷</span></div>
+          <div class="ticket go"><span class="tdate">7/10〜</span><span class="tuni"><b>中央</b>（後楽園・茗荷谷）</span></div>
+          <div class="ticket go"><span class="tdate">受付中</span><span class="tuni"><b>ICU</b>夏OC／<b>青山</b>・相模原＝満員でキャンセル待ち</span></div>
+        </div>
+      </div>
+      <div class="rsv-col soon">
+        <h3>⏳ まもなく開始（要チェック）</h3>
+        <div class="rsv-list">
+          <div class="ticket wait"><span class="tdate">7/13 17:00</span><span class="tuni"><b>上智</b></span></div>
+          <div class="ticket wait"><span class="tdate">7/14 19:00</span><span class="tuni"><b>立教</b>（池袋）</span></div>
+          <div class="ticket wait"><span class="tdate">7/15 12:30</span><span class="tuni"><b>法政</b>・小金井</span></div>
+          <div class="ticket wait"><span class="tdate">7/17 18:00</span><span class="tuni"><b>青山</b>（青山8/2–4・追加募集）</span></div>
+          <div class="ticket wait"><span class="tdate">7/18 10:00</span><span class="tuni"><b>学習院</b>（夏）※秋は10/5〜</span></div>
+          <div class="ticket wait"><span class="tdate">未定</span><span class="tuni"><b>慶應</b>（事前申込制・開始日は公式未掲載）</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 早め＆終了 ===== -->
+  <section>
+    <div class="eyebrow"><h2>早めの単発 ＆ 開催済み</h2><span class="tag">6–7月</span></div>
+    <p class="lead">カレンダーより前に動くもの。青山・相模原は<b>7/12</b>と早いので取りこぼし注意。</p>
+    <div class="strip">
+      <div class="mini">
+        <div class="dl"><span class="date num">7/12</span><span class="wd">日</span></div>
+        <div class="uni">青山学院 <span class="badge sun">近日</span></div>
+        <div class="cp">相模原（理工・社会情報・地球社会共生・コミュニティ人間科学）</div>
+      </div>
+      <div class="mini">
+        <div class="dl"><span class="date num">7/20</span><span class="wd">月祝</span></div>
+        <div class="uni">早稲田 <span class="badge sun">地方</span></div>
+        <div class="cp">仙台会場（全体・予約不要）</div>
+      </div>
+      <div class="mini done">
+        <div class="dl"><span class="date num">6/7</span><span class="wd">日</span></div>
+        <div class="uni">慶應 <span class="badge">終了</span></div>
+        <div class="cp">日吉・講義編（学部説明・模擬講義）</div>
+      </div>
+      <div class="mini done">
+        <div class="dl"><span class="date num">6/20</span><span class="wd">土日</span></div>
+        <div class="uni">中央 <span class="badge">終了</span></div>
+        <div class="cp">多摩（今年から6月前倒し・6/20–21）</div>
+      </div>
+      <div class="mini done">
+        <div class="dl"><span class="date num">7/4</span><span class="wd">土</span></div>
+        <div class="uni">ICU <span class="badge">終了</span></div>
+        <div class="cp">三鷹・Open Campus in English</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 秋以降 ===== -->
+  <section>
+    <div class="eyebrow"><h2>秋・冬・翌春の予定</h2><span class="tag">Oct →</span></div>
+    <p class="lead">夏を逃しても第2チャンスあり。詳細は開催<b>約1か月前</b>に各校が発表します。</p>
+    <div class="strip">
+      <div class="mini">
+        <div class="dl"><span class="date num">10/24</span><span class="wd">土日</span></div>
+        <div class="uni">学習院 <span class="badge autumn">秋</span></div>
+        <div class="cp">目白（10/24午後・10/25）／オンライン配信あり</div>
+      </div>
+      <div class="mini">
+        <div class="dl"><span class="date num">11/22</span><span class="wd">日祝</span></div>
+        <div class="uni">慶應 SFC <span class="badge autumn">秋</span></div>
+        <div class="cp">万学博覧会（総合政策・環境情報・看護医療／11/22–23・詳細決定待ち）</div>
+      </div>
+      <div class="mini">
+        <div class="dl"><span class="date num">11/28</span><span class="wd">土</span></div>
+        <div class="uni">ICU <span class="badge autumn">秋</span></div>
+        <div class="cp">Science Day（三鷹・予約制見込み）</div>
+      </div>
+      <div class="mini">
+        <div class="dl"><span class="date num">3/20</span><span class="wd">'27土</span></div>
+        <div class="uni">ICU <span class="badge autumn">春</span></div>
+        <div class="cp">春のオープンキャンパス（三鷹・2027年）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 大学別リファレンス ===== -->
+  <section>
+    <div class="eyebrow"><h2>大学別ガイド</h2><span class="tag">Campus &amp; 予約</span></div>
+    <p class="lead">キャンパスと予約要否をまとめました。<span class="pill res">要予約</span> は事前登録が入場条件。<span class="pill on">配信</span> はオンラインあり。</p>
+
+    <div class="group-label keio"><span class="bar"></span>早慶上智</div>
+    <div class="cards">
+      <div class="uni-card keio">
+        <h3>早稲田大学</h3>
+        <div class="place">早稲田／戸山／西早稲田 ＋ 地方4都市</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/1・2</span><span class="what">首都圏3キャンパス同日（学部でキャンパス別）</span></div>
+          <div class="row"><span class="when">7/20</span><span class="what">仙台／7/26 大阪・広島・福岡</span></div>
+        </div>
+        <div class="rsv-row done">予約開始 7/3〜（一部プログラム・入退場は自由）</div>
+        <div class="foot"><span class="pill">入退場自由</span><span class="pill">一部プログラム要予約</span><a class="src pill" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card keio">
+        <h3>慶應義塾大学</h3>
+        <div class="place">三田／日吉／湘南藤沢SFC</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/4・5</span><span class="what">三田・学生生活編（在学生と懇談）</span></div>
+          <div class="row"><span class="when">8/1</span><span class="what">SFC・看護医療（完全予約制）</span></div>
+        </div>
+        <div class="rsv-row tbd">予約開始 公式未掲載（事前申込制の予定）</div>
+        <div class="foot"><span class="pill res">要予約</span><span class="pill">医・薬・理工は個別確認</span><a class="src pill" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card keio">
+        <h3>上智大学 <span class="pill" style="vertical-align:2px">NEW</span></h3>
+        <div class="place">四谷（1キャンパス・対面のみ）</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/4・5</span><span class="what">四谷・日ごとに対象学部が変わる</span></div>
+          <div class="row"><span class="when">配信</span><span class="what">なし（LIVE・アーカイブとも実施せず）</span></div>
+        </div>
+        <div class="rsv-row">予約開始 7/13(月)17:00〜（完全予約制）</div>
+        <div class="foot"><span class="pill res">要予約</span><span class="pill">1日最大2プログラム</span><a class="src pill" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+    </div>
+
+    <div class="group-label gmarch"><span class="bar"></span>GMARCH</div>
+    <div class="cards">
+      <div class="uni-card gmarch">
+        <h3>学習院大学</h3>
+        <div class="place">目白（1キャンパス）</div>
+        <div class="rows">
+          <div class="row"><span class="when">7/31・8/1</span><span class="what">夏OC・全学部対象</span></div>
+          <div class="row"><span class="when">10/24・25</span><span class="what">秋OC</span></div>
+        </div>
+        <div class="rsv-row">予約開始 夏7/18(土)10:00〜／秋10/5〜</div>
+        <div class="foot"><span class="pill res">要予約</span><span class="pill on">配信</span><a class="src pill" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card gmarch">
+        <h3>明治大学</h3>
+        <div class="place">駿河台／中野／生田 ※和泉は開催なし</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/2・3</span><span class="what">生田（理工・農・総合数理）</span></div>
+          <div class="row"><span class="when">8/6・7</span><span class="what">駿河台・中野</span></div>
+        </div>
+        <div class="rsv-row done">予約開始 7/6〜 受付中（先着）</div>
+        <div class="foot"><span class="pill res">要予約（先着）</span><a class="src pill" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card gmarch">
+        <h3>青山学院大学</h3>
+        <div class="place">青山／相模原</div>
+        <div class="rows">
+          <div class="row"><span class="when">7/12</span><span class="what">相模原（理工系ほか）</span></div>
+          <div class="row"><span class="when">8/2・3・4</span><span class="what">青山（文系）</span></div>
+        </div>
+        <div class="rsv-row">相模原＝受付中（満員）／青山は7/17(金)18:00〜追加募集</div>
+        <div class="foot"><span class="pill on">配信 7/21–8/31</span><span class="pill">予約要否は要確認</span><a class="src pill" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card gmarch">
+        <h3>立教大学 <span class="pill" style="vertical-align:2px">予告</span></h3>
+        <div class="place">池袋／新座</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/3・4・5</span><span class="what">池袋（日ごとに対象学部が変わる）</span></div>
+          <div class="row"><span class="when">8/7・8</span><span class="what">新座（予約不要・入退場自由）</span></div>
+        </div>
+        <div class="rsv-row">予約開始 7/14(火)19:00〜（池袋）</div>
+        <div class="foot"><span class="pill res">池袋は要予約</span><span class="pill on">一部配信</span><a class="src pill" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card gmarch">
+        <h3>中央大学</h3>
+        <div class="place">多摩／後楽園／茗荷谷</div>
+        <div class="rows">
+          <div class="row"><span class="when">6/20・21</span><span class="what">多摩（終了・今年から6月）</span></div>
+          <div class="row"><span class="when">8/1・2</span><span class="what">後楽園（理工）／8/2・3 茗荷谷（法）</span></div>
+        </div>
+        <div class="rsv-row done">予約開始 7/10〜 受付中</div>
+        <div class="foot"><span class="pill res">要予約</span><a class="src pill" href="https://chuooc2026.jp/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+      <div class="uni-card gmarch">
+        <h3>法政大学</h3>
+        <div class="place">市ケ谷／多摩／小金井</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/11・12</span><span class="what">市ケ谷（文系中心）</span></div>
+          <div class="row"><span class="when">8/2・8</span><span class="what">多摩（2日）／8/2 小金井（理系）</span></div>
+        </div>
+        <div class="rsv-row">予約開始 多摩7/6・市ケ谷7/8〜受付中／小金井7/15(水)12:30〜</div>
+        <div class="foot"><span class="pill res">全日程 要予約</span><a class="src pill" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+    </div>
+
+    <div class="group-label icu"><span class="bar"></span>ICU</div>
+    <div class="cards">
+      <div class="uni-card icu">
+        <h3>国際基督教大学</h3>
+        <div class="place">三鷹（1拠点・リベラルアーツ単科）</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/14・15</span><span class="what">夏OC・国内受験生向けメイン</span></div>
+          <div class="row"><span class="when">11/28</span><span class="what">Science Day／'27 3/20 春OC</span></div>
+        </div>
+        <div class="rsv-row done">エントリー受付中（夏OC）</div>
+        <div class="foot"><span class="pill res">要予約</span><span class="pill on">オンライン相談あり</span><a class="src pill" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 文化祭（地味め） ===== -->
+  <section>
+    <div class="eyebrow"><h2>文化祭（学園祭）</h2><span class="tag">Autumn · 参考</span></div>
+    <p class="lead">秋のキャンパスの空気を見たいなら。<span class="ftag fix">確定</span>は2026年発表済み、<span class="ftag est">'25実績</span>は未発表のため昨年日程の参考です（メイン会場のみ）。</p>
+    <div class="fes">
+      <div class="f"><div class="fd">10/30–11/1</div><div class="fn"><b>明治</b>・明大祭<span class="ftag fix">確定</span></div><div class="fmeta">和泉</div></div>
+      <div class="f"><div class="fd">10/30–11/1</div><div class="fn"><b>青山学院</b>・青山祭<span class="ftag fix">確定</span></div><div class="fmeta">青山</div></div>
+      <div class="f"><div class="fd">10/31–11/3</div><div class="fn"><b>中央</b>・白門祭<span class="ftag fix">確定</span></div><div class="fmeta">多摩</div></div>
+      <div class="f"><div class="fd">11/7–11/8</div><div class="fn"><b>早稲田</b>・早稲田祭<span class="ftag fix">確定</span></div><div class="fmeta">早稲田・戸山（公式最終確認推奨）</div></div>
+      <div class="f tbd"><div class="fd">11/21–24</div><div class="fn"><b>慶應</b>・三田祭<span class="ftag est">'25実績</span></div><div class="fmeta">三田</div></div>
+      <div class="f tbd"><div class="fd">11/1–11/4</div><div class="fn"><b>上智</b>・ソフィア祭<span class="ftag est">'25実績</span></div><div class="fmeta">四谷</div></div>
+      <div class="f tbd"><div class="fd">11/1–11/3</div><div class="fn"><b>学習院</b>・桜凛祭<span class="ftag est">'25実績</span></div><div class="fmeta">目白</div></div>
+      <div class="f tbd"><div class="fd">11/3–11/5</div><div class="fn"><b>立教</b>・St. Paul's Festival<span class="ftag est">'25実績</span></div><div class="fmeta">池袋</div></div>
+      <div class="f tbd"><div class="fd">10/31–11/3</div><div class="fn"><b>法政</b>・自主法政祭<span class="ftag est">'25実績</span></div><div class="fmeta">市ケ谷</div></div>
+      <div class="f tbd"><div class="fd">10月中旬</div><div class="fn"><b>ICU</b>・ICU祭<span class="ftag est">'25実績</span></div><div class="fmeta">三鷹（学年暦=10/12前後・実行委未発表）</div></div>
+    </div>
+  </section>
+
+  <!-- ===== 注意 ===== -->
+  <section>
+    <div class="notes">
+      <h2>使うときの注意</h2>
+      <ul>
+        <li><b>OC日程の確定度に差があります。</b>中央・法政・明治・学習院・青山・早慶・上智は公式で日程確定。<b>立教は「予告」段階</b>で、当日プログラム詳細は後日公開。</li>
+        <li><b>🎫予約は開催日とは別の「開始日」があります。</b>特に明治・立教（池袋）・法政・ICU・上智は事前予約が入場条件。先着・満員の校もあるので開始日にすぐ動くのが安全。慶應のみ開始日が公式未掲載。</li>
+        <li><b>同じ日でもキャンパス＝対象学部が違います。</b>行きたい学部のキャンパス・時間帯を各公式ページで最終確認してください。</li>
+        <li><b>文化祭は2026確定が4校（明治・青山・中央・早稲田）</b>のみ。他6校は昨年（2025）実績を参考掲載しています。</li>
+        <li><b>すでに終了：</b>慶應・日吉（6/7）、中央・多摩（6/20–21）、ICU英語回（7/4）。</li>
+      </ul>
+    </div>
+    <p class="foot-note">2026年7月11日時点で各大学公式サイトを確認して作成。日付・要項は変更されることがあります。最終確認は必ず各校公式で。</p>
+  </section>
+</div>
