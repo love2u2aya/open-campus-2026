@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="2026年夏 早慶上智・GMARCH・ICU オープンキャンパス日程・予約開始日・文化祭まとめ">
-<title>2026夏 オープンキャンパス｜早慶・GMARCH・ICU</title>
+<meta name="description" content="2026年夏 早慶上智・GMARCH・ICU・都立大 オープンキャンパス日程・予約開始日・文化祭まとめ">
+<title>2026夏 オープンキャンパス｜早慶上智・GMARCH・ICU・都立大</title>
 <style>
   /* ===== トークン設計 ===== */
   :root {
@@ -17,13 +17,15 @@
     --line:       #d9d6cc;
     --line-soft:  #e6e3da;
 
-    /* グループ色（早慶／GMARCH／ICU） */
-    --keio:       #a8324a;   /* 早慶＝深紅 */
+    /* グループ色（早慶上智／GMARCH／ICU／都立大） */
+    --keio:       #a8324a;   /* 早慶上智＝深紅 */
     --keio-bg:    #f7e6ea;
     --gmarch:     #1f7a68;   /* GMARCH＝松葉 */
     --gmarch-bg:  #e0f0eb;
     --icu:        #b5811b;   /* ICU＝琥珀 */
     --icu-bg:     #f6ecd6;
+    --tmu:        #2f6db0;   /* 都立大＝公立ブルー */
+    --tmu-bg:     #e4eef8;
 
     --sun:        #e0592b;   /* 夏のアクセント */
     --shadow:     0 1px 2px rgba(27,29,42,.06), 0 8px 24px rgba(27,29,42,.06);
@@ -45,6 +47,7 @@
       --keio:      #f08aa0;  --keio-bg:   #3a2028;
       --gmarch:    #63c9b3;  --gmarch-bg: #163029;
       --icu:       #e3ba62;  --icu-bg:    #362a12;
+      --tmu:       #72b3ec;  --tmu-bg:    #16283b;
       --sun:       #ff7a4d;
       --shadow:    0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
     }
@@ -53,14 +56,14 @@
     --paper:#f4f3ef; --paper-2:#eceae3; --card:#fff; --ink:#1b1d2a; --ink-soft:#4a4d63;
     --ink-faint:#868799; --line:#d9d6cc; --line-soft:#e6e3da;
     --keio:#a8324a; --keio-bg:#f7e6ea; --gmarch:#1f7a68; --gmarch-bg:#e0f0eb;
-    --icu:#b5811b; --icu-bg:#f6ecd6; --sun:#e0592b;
+    --icu:#b5811b; --icu-bg:#f6ecd6; --tmu:#2f6db0; --tmu-bg:#e4eef8; --sun:#e0592b;
     --shadow:0 1px 2px rgba(27,29,42,.06),0 8px 24px rgba(27,29,42,.06);
   }
   :root[data-theme="dark"] {
     --paper:#14151c; --paper-2:#1b1c26; --card:#20222e; --ink:#edecf4; --ink-soft:#b6b7c6;
     --ink-faint:#7f8194; --line:#363849; --line-soft:#2a2c39;
     --keio:#f08aa0; --keio-bg:#3a2028; --gmarch:#63c9b3; --gmarch-bg:#163029;
-    --icu:#e3ba62; --icu-bg:#362a12; --sun:#ff7a4d;
+    --icu:#e3ba62; --icu-bg:#362a12; --tmu:#72b3ec; --tmu-bg:#16283b; --sun:#ff7a4d;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
   }
 
@@ -130,6 +133,7 @@
   .dot.keio { background: var(--keio); }
   .dot.gmarch { background: var(--gmarch); }
   .dot.icu { background: var(--icu); }
+  .dot.tmu { background: var(--tmu); }
 
   /* ===== カレンダー ===== */
   .cal-scroll { overflow-x: auto; padding-bottom: 6px; }
@@ -169,6 +173,7 @@
   .chip.keio   { background: var(--keio-bg);   color: var(--keio);   border-color: var(--keio); }
   .chip.gmarch { background: var(--gmarch-bg); color: var(--gmarch); border-color: var(--gmarch); }
   .chip.icu    { background: var(--icu-bg);    color: var(--icu);    border-color: var(--icu); }
+  .chip.tmu    { background: var(--tmu-bg);    color: var(--tmu);    border-color: var(--tmu); }
   /* タップで公式ページへ（チップ/カードのリンク化） */
   a.chip { text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: box-shadow .12s, filter .12s, transform .08s; }
   a.chip::after { content: " ↗"; font-size: 9px; opacity: .6; }
@@ -207,6 +212,7 @@
   .group-label.keio .bar { background: var(--keio); }
   .group-label.gmarch .bar { background: var(--gmarch); }
   .group-label.icu .bar { background: var(--icu); }
+  .group-label.tmu .bar { background: var(--tmu); }
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; }
   .uni-card {
     background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
@@ -215,6 +221,7 @@
   .uni-card.keio { border-top-color: var(--keio); }
   .uni-card.gmarch { border-top-color: var(--gmarch); }
   .uni-card.icu { border-top-color: var(--icu); }
+  .uni-card.tmu { border-top-color: var(--tmu); }
   .uni-card h3 { margin: 0 0 2px; font-size: 17px; font-weight: 900; }
   .uni-card .place { font-size: 12px; color: var(--ink-faint); font-weight: 700; margin-bottom: 11px; }
   .rows { display: flex; flex-direction: column; gap: 9px; }
@@ -325,10 +332,10 @@
 <header class="hero">
   <p class="kicker">Open Campus Guide</p>
   <h1><span class="yr num">2026</span> 夏の<br>オープンキャンパス</h1>
-  <p class="sub">早慶上智・GMARCH・ICU ＝ 私大トップ10校の日程を、真夏のピークが一目でわかる1枚に。</p>
+  <p class="sub">早慶上智・GMARCH・ICU＋都立大 ＝ 主要11校の日程を、真夏のピークが一目でわかる1枚に。</p>
   <div class="meta">
-    <span>🗓 更新：2026年7月11日時点</span>
-    <span>🏛 対象10校</span>
+    <span>🗓 更新：2026年7月18日時点</span>
+    <span>🏛 対象11校</span>
     <span>🎫 予約開始日つき</span>
   </div>
 </header>
@@ -337,12 +344,13 @@
 
   <!-- ===== メインカレンダー ===== -->
   <section>
-    <div class="eyebrow"><h2>ピークカレンダー</h2><span class="tag">Jul 26 – Aug 15</span></div>
+    <div class="eyebrow"><h2>ピークカレンダー</h2><span class="tag">Jul 26 – Aug 22</span></div>
     <p class="lead">夏OCは <b>8/2（日）に8校が集中</b>。この1週間で首都圏の主要キャンパスがほぼ出そろいます。<b>各大学をタップ↗すると公式OC/予約ページ（上智・中央は特設サイト）が開きます。</b></p>
     <div class="legend">
       <span class="item"><span class="dot keio"></span>早慶上智</span>
       <span class="item"><span class="dot gmarch"></span>GMARCH</span>
       <span class="item"><span class="dot icu"></span>ICU</span>
+      <span class="item"><span class="dot tmu"></span>都立大</span>
       <span class="item" style="color:var(--sun)">◻ 枠 = 開催集中日</span>
     </div>
 
@@ -418,14 +426,19 @@
           <div class="d"><span class="num">8/8</span><span class="wd">土</span></div>
           <a class="chip gmarch" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">立教<span class="cp">新座</span></a>
           <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">多摩</span></a>
+          <a class="chip tmu" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener">都立大<span class="cp">南大沢①</span></a>
         </div>
 
         <!-- 週3: 8/9–8/15 -->
-        <div class="cell empty"><div class="d"><span class="num">9</span></div></div>
+        <div class="cell sun">
+          <div class="d"><span class="num">8/9</span><span class="wd">日</span></div>
+          <a class="chip tmu" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener">都立大<span class="cp">南大沢②</span></a>
+        </div>
         <div class="cell empty"><div class="d"><span class="num">10</span></div></div>
         <div class="cell">
           <div class="d"><span class="num">8/11</span><span class="wd">火祝</span></div>
           <a class="chip gmarch" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">法政<span class="cp">市ケ谷</span></a>
+          <a class="chip tmu" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener">都立大<span class="cp">荒川・健康福祉</span></a>
         </div>
         <div class="cell">
           <div class="d"><span class="num">8/12</span><span class="wd">水</span></div>
@@ -440,6 +453,18 @@
           <div class="d"><span class="num">8/15</span><span class="wd">土</span></div>
           <a class="chip icu" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">ICU<span class="cp">三鷹・夏②</span></a>
         </div>
+
+        <!-- 週4: 8/16–8/22（都立大・日野） -->
+        <div class="cell empty"><div class="d"><span class="num">16</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">17</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">18</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">19</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">20</span></div></div>
+        <div class="cell empty"><div class="d"><span class="num">21</span></div></div>
+        <div class="cell sat">
+          <div class="d"><span class="num">8/22</span><span class="wd">土</span></div>
+          <a class="chip tmu" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener">都立大<span class="cp">日野・シス設</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -447,28 +472,28 @@
   <!-- ===== 予約開始タイムライン ===== -->
   <section>
     <div class="eyebrow"><h2>予約はいつ取る？</h2><span class="tag">Reservation</span></div>
-    <p class="lead"><b>🎫「予約開始日」は開催日とは別物。</b>先着・満員になる校もあるので、志望校が固まったら開始日にすぐ動くのが安全です（今日=7/11時点）。<b>各行をタップ↗すると予約/受付ページ（未開設なら最寄りの公式ページ）が開きます。</b></p>
+    <p class="lead"><b>🎫「予約開始日」は開催日とは別物。</b>7/18時点で<b>主要校の夏OC予約はほぼ受付開始済み</b>。先着・満員になる校もあるので早めの確保が安全です。<b>各行をタップ↗すると予約/受付ページ（未開設なら最寄りの公式ページ）が開きます。</b></p>
     <div class="rsv">
       <div class="rsv-col now">
         <h3>▶ もう予約できる（受付中）</h3>
         <div class="rsv-list">
+          <a class="ticket go" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener"><span class="tdate">6/29〜</span><span class="tuni"><b>都立大</b>・南大沢（8/8分6/29・8/9分7/6〜）</span></a>
           <a class="ticket go" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener"><span class="tdate">7/3〜</span><span class="tuni"><b>早稲田</b>（一部プログラム）</span></a>
           <a class="ticket go" href="https://www.meiji.ac.jp/exam/event/opencampus/index.html" target="_blank" rel="noopener"><span class="tdate">7/6〜</span><span class="tuni"><b>明治</b>（先着）</span></a>
-          <a class="ticket go" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/6〜</span><span class="tuni"><b>法政</b>・多摩</span></a>
-          <a class="ticket go" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/8〜</span><span class="tuni"><b>法政</b>・市ケ谷</span></a>
+          <a class="ticket go" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/6〜</span><span class="tuni"><b>法政</b>・多摩／市ケ谷7/8〜／小金井7/15〜</span></a>
           <a class="ticket go" href="https://chuooc2026.jp/" target="_blank" rel="noopener"><span class="tdate">7/10〜</span><span class="tuni"><b>中央</b>（後楽園・茗荷谷）</span></a>
+          <a class="ticket go" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener"><span class="tdate">7/13〜</span><span class="tuni"><b>上智</b>（完全予約制）</span></a>
+          <a class="ticket go" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener"><span class="tdate">7/14〜</span><span class="tuni"><b>立教</b>（池袋）</span></a>
+          <a class="ticket go" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener"><span class="tdate">7/17〜</span><span class="tuni"><b>青山</b>（青山8/2–4）／相模原は満員</span></a>
+          <a class="ticket go" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener"><span class="tdate">7/18〜</span><span class="tuni"><b>学習院</b>（夏・本日開始）</span></a>
           <a class="ticket go" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener"><span class="tdate">受付中</span><span class="tuni"><b>ICU</b>・夏OC</span></a>
-          <a class="ticket go" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener"><span class="tdate">受付中</span><span class="tuni"><b>青山</b>・相模原＝満員でキャンセル待ち</span></a>
         </div>
       </div>
       <div class="rsv-col soon">
-        <h3>⏳ まもなく開始（要チェック）</h3>
+        <h3>⏳ これから開始・要確認</h3>
         <div class="rsv-list">
-          <a class="ticket wait" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener"><span class="tdate">7/13 17:00</span><span class="tuni"><b>上智</b></span></a>
-          <a class="ticket wait" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener"><span class="tdate">7/14 19:00</span><span class="tuni"><b>立教</b>（池袋）</span></a>
-          <a class="ticket wait" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener"><span class="tdate">7/15 12:30</span><span class="tuni"><b>法政</b>・小金井</span></a>
-          <a class="ticket wait" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener"><span class="tdate">7/17 18:00</span><span class="tuni"><b>青山</b>（青山8/2–4・追加募集）</span></a>
-          <a class="ticket wait" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener"><span class="tdate">7/18 10:00</span><span class="tuni"><b>学習院</b>（夏）※秋は10/5〜</span></a>
+          <a class="ticket wait" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener"><span class="tdate">学部次第</span><span class="tuni"><b>都立大</b>・荒川/日野は各学部サイトで確認</span></a>
+          <a class="ticket wait" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener"><span class="tdate">10/5〜</span><span class="tuni"><b>学習院</b>・秋OC（10/24・25）</span></a>
           <a class="ticket wait" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener"><span class="tdate">未定</span><span class="tuni"><b>慶應</b>（開始日は公式未掲載→公式OCへ）</span></a>
         </div>
       </div>
@@ -478,17 +503,17 @@
   <!-- ===== 早め＆終了 ===== -->
   <section>
     <div class="eyebrow"><h2>早めの単発 ＆ 開催済み</h2><span class="tag">6–7月</span></div>
-    <p class="lead">カレンダーより前に動くもの。青山・相模原は<b>7/12</b>と早いので取りこぼし注意。</p>
+    <p class="lead">カレンダー前の単発と、開催済みイベント。次に来るのは<b>7/20 早稲田・仙台</b>。</p>
     <div class="strip">
-      <a class="mini" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">
-        <div class="dl"><span class="date num">7/12</span><span class="wd">日</span></div>
-        <div class="uni">青山学院 <span class="badge sun">近日</span></div>
-        <div class="cp">相模原（理工・社会情報・地球社会共生・コミュニティ人間科学）</div>
-      </a>
       <a class="mini" href="https://www.waseda.jp/inst/admission/visiting/opencampus/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">7/20</span><span class="wd">月祝</span></div>
-        <div class="uni">早稲田 <span class="badge sun">地方</span></div>
+        <div class="uni">早稲田 <span class="badge sun">近日</span></div>
         <div class="cp">仙台会場（全体・予約不要）</div>
+      </a>
+      <a class="mini done" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">
+        <div class="dl"><span class="date num">7/12</span><span class="wd">日</span></div>
+        <div class="uni">青山学院 <span class="badge">終了</span></div>
+        <div class="cp">相模原（理工・社会情報・地球社会共生・コミュニティ人間科学）</div>
       </a>
       <a class="mini done" href="https://www.keio.ac.jp/ja/admissions/oc/" target="_blank" rel="noopener">
         <div class="dl"><span class="date num">6/7</span><span class="wd">日</span></div>
@@ -570,7 +595,7 @@
           <div class="row"><span class="when">8/4・5</span><span class="what">四谷・日ごとに対象学部が変わる</span></div>
           <div class="row"><span class="when">配信</span><span class="what">なし（LIVE・アーカイブとも実施せず）</span></div>
         </div>
-        <div class="rsv-row">予約開始 7/13(月)17:00〜（完全予約制）</div>
+        <div class="rsv-row done">予約受付中（7/13〜・完全予約制）</div>
         <div class="foot"><span class="pill res">要予約</span><span class="pill">1日最大2プログラム</span><a class="src pill" href="https://adm.sophia.ac.jp/jpn/sophia-opencampus2026/" target="_blank" rel="noopener">公式↗</a></div>
       </div>
     </div>
@@ -584,7 +609,7 @@
           <div class="row"><span class="when">7/31・8/1</span><span class="what">夏OC・全学部対象</span></div>
           <div class="row"><span class="when">10/24・25</span><span class="what">秋OC</span></div>
         </div>
-        <div class="rsv-row">予約開始 夏7/18(土)10:00〜／秋10/5〜</div>
+        <div class="rsv-row done">夏7/18〜受付中／秋は10/5〜</div>
         <div class="foot"><span class="pill res">要予約</span><span class="pill on">配信</span><a class="src pill" href="https://www.univ.gakushuin.ac.jp/news/31466.html" target="_blank" rel="noopener">公式↗</a></div>
       </div>
       <div class="uni-card gmarch">
@@ -604,7 +629,7 @@
           <div class="row"><span class="when">7/12</span><span class="what">相模原（理工系ほか）</span></div>
           <div class="row"><span class="when">8/2・3・4</span><span class="what">青山（文系）</span></div>
         </div>
-        <div class="rsv-row">相模原＝受付中（満員）／青山は7/17(金)18:00〜追加募集</div>
+        <div class="rsv-row done">青山7/17〜・相模原（満員）とも受付中</div>
         <div class="foot"><span class="pill on">配信 7/21–8/31</span><span class="pill">予約要否は要確認</span><a class="src pill" href="https://www.aoyama.ac.jp/admission/undergraduate/open_campus/" target="_blank" rel="noopener">公式↗</a></div>
       </div>
       <div class="uni-card gmarch">
@@ -614,7 +639,7 @@
           <div class="row"><span class="when">8/3・4・5</span><span class="what">池袋（日ごとに対象学部が変わる）</span></div>
           <div class="row"><span class="when">8/7・8</span><span class="what">新座（予約不要・入退場自由）</span></div>
         </div>
-        <div class="rsv-row">予約開始 7/14(火)19:00〜（池袋）</div>
+        <div class="rsv-row done">予約受付中（池袋7/14〜）</div>
         <div class="foot"><span class="pill res">池袋は要予約</span><span class="pill on">一部配信</span><a class="src pill" href="https://www.rikkyo.ac.jp/admissions/visit/opencampus/index.html" target="_blank" rel="noopener">公式↗</a></div>
       </div>
       <div class="uni-card gmarch">
@@ -634,7 +659,7 @@
           <div class="row"><span class="when">8/11・12</span><span class="what">市ケ谷（文系中心）</span></div>
           <div class="row"><span class="when">8/2・8</span><span class="what">多摩（2日）／8/2 小金井（理系）</span></div>
         </div>
-        <div class="rsv-row">予約開始 多摩7/6・市ケ谷7/8〜受付中／小金井7/15(水)12:30〜</div>
+        <div class="rsv-row done">全キャンパス受付中（多摩7/6・市ケ谷7/8・小金井7/15〜）</div>
         <div class="foot"><span class="pill res">全日程 要予約</span><a class="src pill" href="https://nyushi.hosei.ac.jp/event/oc/" target="_blank" rel="noopener">公式↗</a></div>
       </div>
     </div>
@@ -650,6 +675,20 @@
         </div>
         <div class="rsv-row done">エントリー受付中（夏OC）</div>
         <div class="foot"><span class="pill res">要予約</span><span class="pill on">オンライン相談あり</span><a class="src pill" href="https://www.icu.ac.jp/admissions/undergraduate/event/" target="_blank" rel="noopener">公式↗</a></div>
+      </div>
+    </div>
+
+    <div class="group-label tmu"><span class="bar"></span>都立大（公立）</div>
+    <div class="cards">
+      <div class="uni-card tmu">
+        <h3>東京都立大学 <span class="pill" style="vertical-align:2px">NEW</span></h3>
+        <div class="place">南大沢／荒川／日野</div>
+        <div class="rows">
+          <div class="row"><span class="when">8/8・9</span><span class="what">南大沢（人文・法・経済経営・理・都市環境）</span></div>
+          <div class="row"><span class="when">8/11</span><span class="what">荒川（健康福祉）／8/22 日野（システムデザイン）</span></div>
+        </div>
+        <div class="rsv-row done">南大沢6/29・7/6〜受付中／荒川・日野は学部サイト</div>
+        <div class="foot"><span class="pill res">要予約・定員制</span><span class="pill on">WEB OCあり</span><a class="src pill" href="https://www.tmu.ac.jp/entrance/faculty/open_campus/main.html" target="_blank" rel="noopener">公式↗</a></div>
       </div>
     </div>
   </section>
@@ -669,6 +708,7 @@
       <div class="f tbd"><div class="fd">11/3–11/5</div><div class="fn"><b>立教</b>・St. Paul's Festival<span class="ftag est">'25実績</span></div><div class="fmeta">池袋</div></div>
       <div class="f tbd"><div class="fd">10/31–11/3</div><div class="fn"><b>法政</b>・自主法政祭<span class="ftag est">'25実績</span></div><div class="fmeta">市ケ谷</div></div>
       <div class="f tbd"><div class="fd">10月中旬</div><div class="fn"><b>ICU</b>・ICU祭<span class="ftag est">'25実績</span></div><div class="fmeta">三鷹（学年暦=10/12前後・実行委未発表）</div></div>
+      <div class="f tbd"><div class="fd">11月上旬</div><div class="fn"><b>都立大</b>・みやこ祭<span class="ftag est">'25実績</span></div><div class="fmeta">南大沢（第22回・未発表）</div></div>
     </div>
   </section>
 
@@ -677,14 +717,14 @@
     <div class="notes">
       <h2>使うときの注意</h2>
       <ul>
-        <li><b>OC日程の確定度に差があります。</b>中央・法政・明治・学習院・青山・早慶・上智は公式で日程確定。<b>立教は「予告」段階</b>で、当日プログラム詳細は後日公開。</li>
+        <li><b>OC日程の確定度に差があります。</b>中央・法政・明治・学習院・青山・早慶・上智・都立大は公式で日程確定。<b>立教は「予告」段階</b>で、当日プログラム詳細は後日公開。</li>
         <li><b>🎫予約は開催日とは別の「開始日」があります。</b>特に明治・立教（池袋）・法政・ICU・上智は事前予約が入場条件。先着・満員の校もあるので開始日にすぐ動くのが安全。慶應のみ開始日が公式未掲載。</li>
         <li><b>同じ日でもキャンパス＝対象学部が違います。</b>行きたい学部のキャンパス・時間帯を各公式ページで最終確認してください。</li>
         <li><b>文化祭は2026確定が4校（明治・青山・中央・早稲田）</b>のみ。他6校は昨年（2025）実績を参考掲載しています。</li>
-        <li><b>すでに終了：</b>慶應・日吉（6/7）、中央・多摩（6/20–21）、ICU英語回（7/4）。</li>
+        <li><b>すでに終了：</b>慶應・日吉（6/7）、中央・多摩（6/20–21）、ICU英語回（7/4）、青山・相模原（7/12）。</li>
       </ul>
     </div>
-    <p class="foot-note">2026年7月11日時点で各大学公式サイトを確認して作成。日付・要項は変更されることがあります。最終確認は必ず各校公式で。</p>
+    <p class="foot-note">2026年7月18日時点で各大学公式サイトを確認して作成。日付・要項は変更されることがあります。最終確認は必ず各校公式で。</p>
   </section>
 </div>
 
